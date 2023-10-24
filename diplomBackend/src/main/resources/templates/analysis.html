@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analysis</title>
+</head>
+<body>
+<h1>Text Analysis</h1>
+<form th:action="@{/analysis}" method="post">
+    <textarea name="texts" rows="5" cols="50" th:text="${texts}"></textarea>
+    <button type="submit">Отправить</button>
+</form>
+
+<div th:each="result : ${results}">
+    <p th:text="${result}"></p>
+</div>
+</body>
+</html>

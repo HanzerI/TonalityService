@@ -1,6 +1,7 @@
 package com.example.diplombackend.controllers
 
 import com.example.diplombackend.Tonality.Companion.toTonality
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -14,7 +15,8 @@ import java.util.*
 
 
 @Controller
-class AnalysisController(private val restTemplate: RestTemplate) {
+class AnalysisController(private val restTemplate: RestTemplate,
+                         @Value("\${URL}") private val url:String) {
     @GetMapping("/analysis")
     fun showAnalysisPage(model: Model): String {
         model["texts"] = ""
@@ -24,7 +26,9 @@ class AnalysisController(private val restTemplate: RestTemplate) {
 
     @PostMapping("/analysis")
     fun analyzeTexts(@RequestParam("texts") texts: String, model: Model): String {
-        val url = "http://my-py-service:5000/analyze"
+//        val url = "http://py-service:5000/analyze"
+
+//        val url ="http://127.0.0.1:5000"
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
 

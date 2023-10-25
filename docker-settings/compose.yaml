@@ -28,20 +28,24 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/${POSTGRES_DB}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+      - URL=${URL}
     depends_on:
       - postgres_db
+      - py-service
 
 
   py-service:
     build:  ../pythonProject
     container_name: py-service
     networks:
-      - spring-network
+      -  db-network
+    ports:
+      - "5000:5000"
 
 networks:
   db-network:
     driver: bridge
-    # internal: true # Установите внутренний режим для ограничения доступа с хоста
+    internal: true # Установите внутренний режим для ограничения доступа с хоста
   spring-network:
     driver: bridge
 

@@ -1,2 +1,2 @@
--- CREATE DATABASE Site;
-ALTER ROLE postgres WITH PASSWORD '1234';                                               
+CREATE DATABASE Site;
+ALTER ROLE postgres WITH PASSWORD 'postgres';
